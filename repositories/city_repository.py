@@ -29,10 +29,10 @@ def select(id):
     city = None
     sql = "SELECT * FROM cities WHERE id = ?"
     values = [id]
-    results = run_sql(sql, values)[0]
+    result = run_sql(sql, values)[0]
 
     if result is not None:
-        visited = True if row["visited"] == 1 else False
+        visited = True if result["visited"] == 1 else False
         country = country_repository.select(result ["country"])
         city = City(result['name'], result['country'], result['id'])
     return city

@@ -34,8 +34,9 @@ def new_country():
 def create_country():
     # This is info from the database being added to the form
     name = request.form["name"]
+    continent = request.form["continent"]
     # This is saving to the form/database
-    country = Country(name)
+    country = Country(name, continent)
     country_repository.save(country)
     # Takes us back to countries page
     return redirect ("/countries")

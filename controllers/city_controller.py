@@ -33,6 +33,7 @@ def new_city():
 def create_city():
     # This is info from the database being added to the form
     name = request.form["name"]
+    country = request.form["country"]
     # This is saving to the form/database
     city = City(name)
     city_repository.save(city)

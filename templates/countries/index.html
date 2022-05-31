@@ -5,34 +5,20 @@
         <div class="content">
         <div class="name">
             <a href="/countries/{{country.id}}">{{country.name}}</a>
+            <div class="buttons">
+              <form class="delete-form" action="/countries/{{country.id}}/delete" method="POST">
+                <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:red" aria-hidden="true"></i></button> 
+              </form> 
+            </div>
         </div>
         </div>
     </div>
   {% endfor %}
 
-
-    <form action="/countries" method="post">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Name" required autofocus>
-      </div>
-    
-      <div>
-        <label for="continent">Continent:</label>
-        <input type="text" id="continent" name="continent" placeholder="Continent" required>
-      </div>
-    
-      <button type="submit">Add Country</button>
-    
     </form>
-  {% for country in all_countries %}
-    <div class="buttons">
-      <form class="delete-form" action="/countries/{{country.id}}/delete" method="POST">
-        <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:red" aria-hidden="true"></i></button> 
-      </form> 
-    </div>
-  {% endfor %}
+  
 
+  <a href="/countries/new">Add Country</a>
   
 
 {% endblock %}
