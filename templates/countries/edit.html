@@ -2,18 +2,40 @@
 {% block content %}
 
 <form action="/countries/{{country.id}}" method="post">
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" value="{{country.name}}" required autofocus>
-    </div>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{country.name}}" required autofocus>
+  </div>
 
-    
-   
-  
-  
-    
-    <button type="submit">Update Country</button>
-  
-  </form>
+  <div>
+    <label for="continent">Continent:</label>
+    <input type="text" id="continent" name="continent" value="{{country.continent}}" required>
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" value="{{city.name}}" required>
+  </div>
+
+  <div>
+    <label for="visited">Visited:</label>
+    <select id="visited" name="visited">
+
+      <option value="1"
+        {% if city.visited == True %} selected="selected" {% endif %}>
+        Yes
+      </option>
+
+      <option value="0"
+        {% if city.visited == False %} selected="selected" {% endif %}>
+        No
+      </option>
+
+    </select>
+  </div>
+
+  <button type="submit">Update Country</button>
+
+</form>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-{% for country in all_countries %}
+  {% for country in all_countries %}
     <div class="country">
         <div class="content">
         <div class="name">
@@ -8,15 +8,31 @@
         </div>
         </div>
     </div>
-{% endfor %}
+  {% endfor %}
 
-<form action="/countries" method="post">
-    <div>
-      <!-- <label for="name">Name:</label> -->
-      <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+
+    <form action="/countries" method="post">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+      </div>
+    
+      <div>
+        <label for="continent">Continent:</label>
+        <input type="text" id="continent" name="continent" placeholder="Continent" required>
+      </div>
+    
+      <button type="submit">Add Country</button>
+    
+    </form>
+  {% for country in all_countries %}
+    <div class="buttons">
+      <form class="delete-form" action="/countries/{{country.id}}/delete" method="POST">
+        <button class="trash-button"><i class="fa fa-trash-o fa-3x" style="color:red" aria-hidden="true"></i></button> 
+      </form> 
     </div>
+  {% endfor %}
+
   
-    <button type="submit">Add Country</button>
-  
-  </form>
+
 {% endblock %}

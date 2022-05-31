@@ -37,6 +37,20 @@ def select(id):
         city = City(result['name'], result['country'], result['id'])
     return city
 
+def select_by_country_id(country_id):
+    cities = []
+    sql = "SELECT * FROM cities WHERE country = ?"
+    values = [country_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        visited = True if row["visited"] == 1 else False
+        country = country_repository.select(row["country"])
+        city = City(row["name"], country, visited, row["id"])
+        cities.append(city)
+    return cities
+    
+
 def delete_all():
     sql = "DELETE FROM cities"
     run_sql(sql)

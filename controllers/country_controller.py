@@ -8,7 +8,7 @@ from flask import Blueprint
 
 
 countries_blueprint = Blueprint("countries", __name__)
-# cities_blueprint = Blueprint("cities", __name__)
+
 
 # RESTful CRUD Routes
 
@@ -46,8 +46,8 @@ def create_country():
 @countries_blueprint.route("/countries/<id>", methods=["GET"])
 def show_country(id):
     country = country_repository.select(id)
-    city = city_repository.select_all()
-    return render_template("countries/show.html", country=country, city=city)
+    cities = city_repository.select_by_country_id(id)
+    return render_template("countries/show.html", country=country, cities=cities)
 
 
 # EDIT
