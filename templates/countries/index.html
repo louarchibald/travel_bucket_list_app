@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
+{% for country in all_countries %}
+    <div class="country">
+        <div class="content">
+        <div class="name">
+            <a href="/countries/{{country.id}}">{{country.name}}</a>
+        </div>
+        </div>
+    </div>
+{% endfor %}
 
-<p>
-    TESTING TESTING PLEASE WORK FOR THE LOVE OF GOD
-</p>
-
-
-
+<form action="/countries" method="post">
+    <div>
+      <!-- <label for="name">Name:</label> -->
+      <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+    </div>
+  
+    <button type="submit">Add Country</button>
+  
+  </form>
 {% endblock %}

@@ -5,16 +5,16 @@ DROP TABLE IF EXISTS cities;
 
 CREATE TABLE countries (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR
+    name VARCHAR,
+    continent VARCHAR
 );
 
 CREATE TABLE cities (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR,
-    country_id INT,
+    country INT,
     visited BOOLEAN,
-        FOREIGN KEY (country_id)
-            REFERENCES countries(id)
+        FOREIGN KEY (country)
+            REFERENCES countries(id) ON DELETE CASCADE
 
 );
-

@@ -4,8 +4,8 @@ from models.city import City
 import repositories.country_repository as country_repository
 
 def save(city):
-    sql = "INSERT INTO cities (name, country_id, visited, id) VALUES (?, ?, ? ,?) RETURNING *"
-    values = [city.name, city.country_id, city.visited, city.id]
+    sql = "INSERT INTO cities (name, country, visited, id) VALUES (?, ?, ? ,?) RETURNING *"
+    values = [city.name, city.country.id, city.visited, city.id]
     results = run_sql(sql, values)
     id = results[0]['id']
     city.id = id
@@ -18,7 +18,9 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        city = City(row['name'], row["country_id"], row["visited"], row['id'])
+        visited = True if row["visited"] == 1 else False
+        country = country_repository.select(row["country_id"])
+        city = City(row["name"], country_id, visited, row["id"])
         cities.append(city)
     return cities
 
@@ -28,6 +30,12 @@ def select(id):
     sql = "SELECT * FROM cities WHERE id = ?"
     values = [id]
     results = run_sql(sql, values)[0]
+
+    if result is not None:
+        visited = True if row["visited"] == 1 else False
+        country = country_repository.select(result ["country_id"])
+        city = City(result['name'], result['country'], result['id'])
+    return city
 
 def delete_all():
     sql = "DELETE FROM cities"
@@ -42,3 +50,6 @@ def update(city):
     sql = "UPDATE cities SET (name, country_id, visited, id) VALUES (?, ?, ? ,?) WHERE id = ?"
     values = [city.name, city.country_id, city.visited, city.id]
     run_sql(sql, values)
+
+
+
