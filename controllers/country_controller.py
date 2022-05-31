@@ -46,7 +46,8 @@ def create_country():
 @countries_blueprint.route("/countries/<id>", methods=["GET"])
 def show_country(id):
     country = country_repository.select(id)
-    return render_template("countries/show.html", country=country)
+    city = city_repository.select_all()
+    return render_template("countries/show.html", country=country, city=city)
 
 
 # EDIT
