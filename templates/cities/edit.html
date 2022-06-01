@@ -8,13 +8,16 @@
   </div>
 
   <div>
-    <label for="continent">Continent:</label>
-    <input type="text" id="continent" name="continent" value="{{country.continent}}" required>
-  </div>
+    <label for="country">Country:</label>
+    <select id="country" name="country_id" required autofocus>
 
-  <div>
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" value="{{city.name}}" required>
+]   <option disabled value="None">None</option>
+        {% for country in countries %}
+        
+        <option value="{{country.id}}">{{country.name}}</option>
+
+        {% endfor %}
+    </select>
   </div>
 
   <div>
@@ -34,7 +37,7 @@
     </select>
   </div>
 
-  <button type="submit">Update Country</button>
+  <button type="submit">Update City</button>
 
 </form>
 

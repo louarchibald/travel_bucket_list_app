@@ -34,7 +34,7 @@ def select(id):
     if result is not None:
         visited = True if result["visited"] == 1 else False
         country = country_repository.select(result ["country"])
-        city = City(result['name'], result['country'], result['id'])
+        city = City(result['name'], result['country'], visited, result['id'])
     return city
 
 def select_by_country_id(country_id):
@@ -61,7 +61,7 @@ def delete(id):
     run_sql(sql, values)
 
 def update(city):
-    sql = "UPDATE cities SET (name, country, visited, id) VALUES (?, ?, ? ,?) WHERE id = ?"
+    sql = "UPDATE cities SET (name, country, visited) = (?, ?, ? ) WHERE id = ?"
     values = [city.name, city.country, city.visited, city.id]
     run_sql(sql, values)
 

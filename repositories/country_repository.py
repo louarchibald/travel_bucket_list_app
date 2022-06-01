@@ -43,7 +43,7 @@ def delete(id):
     run_sql(sql, values)
 
 def update(country):
-    sql = "UPDATE countries SET (name, continent, id) = (?, ?, ?) WHERE id = ?"
+    sql = "UPDATE countries SET (name, continent) = (?, ?) WHERE id = ?"
     values = [country.name, country.continent, country.id]
     run_sql(sql, values)
 

@@ -6,16 +6,29 @@
       <input type="text" id="name" name="name" placeholder="Name" required autofocus>
     </div>
   
-    
     <div>
         <label for="country">Country:</label>
-        <select id="country" name="country_id">
-            <option value="None">None</option>
-          {% for country in countries %}
-              <option value = "{{country.id}}">{{country.name}}</option>
-          {% endfor %}
+        <select id="country" name="country_id" required autofocus>
+
+            {% for country in all_countries %}
+            <option value="{{country.id}}">{{country.name}}</option>
+
+            {% endfor %}
         </select>
-    </div>
+      </div>
+    
+
+    <div>
+        <label for="visited">Visited:</label>
+        <select name="visited" id="visited">
+          <option value="None">None</option>
+          <option value="visited">Yes</option> 
+          <option value="visited">No</option>
+      </select>
+      </div>
+    
+
+
     
     <button type="submit">Add City</button>
 {% endblock %}
